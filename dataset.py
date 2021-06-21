@@ -18,7 +18,10 @@ class GroupGenerator(Dataset):
         self.imagenet_pretrain = imagenet_pretrain
         if image_aug:
             # do image augmentation by left-right flip
-            self.seq = iaa.Sequential([iaa.Fliplr(0.5)])
+            self.seq = iaa.Sequential([
+                iaa.Fliplr(0.5),
+                iaa.Resize((224, 224))
+            ])
         self.image_aug = image_aug
         self.on_epoch_end()
 
